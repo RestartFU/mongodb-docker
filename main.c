@@ -30,7 +30,7 @@ int main(int _, char* args[]) {
             system("cd /usr/local/mongodb-docker && sudo docker compose up 2>/dev/null & disown");
             return 0;
         }
-        system("sudo docker compose up 2>/dev/null");
+        system("cd /usr/local/mongodb-docker && sudo docker compose up 2>/dev/null");
         printf("\n");
     } else if (strcmp(args[1], "stop") == 0) {
         system("cd /usr/local/mongodb-docker && sudo docker compose down 2>/dev/null");
