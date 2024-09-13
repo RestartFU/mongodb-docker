@@ -39,7 +39,7 @@ fn main() {
     kind = "down"
   }
 
-  mut cmd := "docker compose -f /tmp/mongodb-docker/docker-compose.yml ${kind} 2>/dev/null"
+  mut cmd := "sudo docker compose -f /tmp/mongodb-docker/docker-compose.yml ${kind} 2>/dev/null"
   if background { cmd += " & disown" }
 
   println(cmd)
