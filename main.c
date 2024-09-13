@@ -20,19 +20,17 @@ int main(int _, char* args[]) {
     }
     int background;
     if (arr_length(args) >= 3) {
-        if (strcmp(args[1], "--background") == 0) {
+        if (strcmp(args[2], "--background") == 0) {
             background = 1;
         }
     }
 
     if (strcmp(args[1], "start") == 0) {
-        char *cmd = "sudo docker compose up 2>/dev/null";
-        if (background) {
-            sprintf(cmd, "%s %s", cmd, "& disown");
+        if (background == 1) {
+            system("sudo docker compose up 2>/dev/null & disown");
+            return 0;
         }
-        printf("%s", cmd);
-        return 0;
-        system(cmd);
+        system("sudo docker compose up 2>/dev/null");
         printf("\n");
     } else if (strcmp(args[1], "stop") == 0) {
         system("sudo docker compose down 2>/dev/null");
