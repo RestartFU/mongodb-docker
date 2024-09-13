@@ -9,9 +9,18 @@ const options := [
 ]
 
 fn main() {
-  os.rmdir_all("/tmp/mongodb-docker")!
-  os.mkdir("/tmp/mongodb-docker")!
-  os.write_file("/tmp/mongodb-docker/docker-compose.yml", docker_compose.to_string())!
+  os.rmdir_all("/tmp/mongodb-docker") or {
+    println("could not remove temporary mongodb-docker folder - sudo might be required")
+    return
+  }
+  os.mkdir("/tmp/mongodb-docker") or {
+    println("could not make temporary mongodb-docker folder - sudo might be required")
+    return
+  }
+  os.write_file("/tmp/mongodb-docker/docker-compose.yml", docker_compose.to_string()) or {
+    println("could not write temporary docker-compose.yml file - sudo might be required")
+    return
+  }
 
   mut args := os.args.clone()[1..]
   mut background := false
