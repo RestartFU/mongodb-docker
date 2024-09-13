@@ -1,5 +1,5 @@
 build:
-	gcc -o bin/mongodb-docker main.c
+	v . -o ./bin/mongodb-docker
 push:
 	git add .
 	git commit -m "Update"
